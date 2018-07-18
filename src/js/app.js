@@ -27,7 +27,7 @@ var app = new Vue({
             console.log('please sign in now!')
         },
         saveResume:function(){
-
+            console.log('save the resume')
         }
     }
 })
