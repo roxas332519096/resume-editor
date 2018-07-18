@@ -3,6 +3,10 @@
     justify-content: space-between;
 }
 
+*[v-cloak] {
+    display: none;
+}
+
 .resume {
     display: flex;
     justify-content: center;

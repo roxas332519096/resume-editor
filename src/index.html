@@ -21,45 +21,54 @@
             <editable-sapn :value="resume.email" @input="editdata('email',$event)"></editable-sapn>
         </div>
         <ul class="actions">
-            <li>
-                <button @click="loginVisible=true">登录</button>
+            <li v-show="!currentUser.id">
+                请登录!
+            </li>
+            <li v-show="currentUser.id" v-cloak>
+                当前用户: {{currentUser.email}}
             </li>
             <li>
-                <button @click="OnClickSave">保存</button>
+                <button type="button" @click="loginVisible=true" v-show="!currentUser.id">登录</button>
+            </li>
+            <li>
+                <button @click="save">保存</button>
+            </li>
+            <li>
+                <button @click="logOut" v-show="currentUser.id">登出</button>
             </li>
         </ul>
-        <div class="login" v-show="loginVisible">
-            <form class="form">
-                <button @click="loginVisible=false">关闭</button>
+        <div class="login" v-show="loginVisible" v-cloak>
+            <form class="form"  @submit.prevent="login">
+                <button type="button" @click="loginVisible=false">关闭</button>
                 <h2>登录</h2>
                 <div class="row">
                     <label>邮箱</label>
-                    <input type="text">
+                    <input type="text" v-model="loginData.email">
                 </div>
                 <div class="row">
                     <label>密码</label>
-                    <input type="password">
+                    <input type="password" v-model="loginData.password">
                 </div>
                 <div class="row">
-                    <button>登录</button>
+                    <button type="submit">登录</button>
                     <a href="#" @click="loginVisible=false;signUpVisible=true">注册</a>
                 </div>
             </form>
         </div>
-        <div class="signUp" v-show="signUpVisible">
-            <form class="form">
+        <div class="signUp" v-show="signUpVisible" v-cloak>
+            <form class="form"  @submit.prevent="login">
                 <button @click="signUpVisible=false">关闭</button>
                 <h2>注册</h2>
                 <div class="row">
                     <label>邮箱</label>
-                    <input type="text">
+                    <input type="text" v-model="signUpData.email">
                 </div>
                 <div class="row">
                     <label>密码</label>
-                    <input type="password">
+                    <input type="password" v-model="signUpData.password">
                 </div>
                 <div class="row">
-                    <button>注册</button>
+                    <button type="submit">注册</button>
                     <a href="#" @click="loginVisible=true;signUpVisible=false">登录</a>
                 </div>
             </form>
