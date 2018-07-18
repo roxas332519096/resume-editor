@@ -24,10 +24,10 @@ var app = new Vue({
             }
         },
         showLogin:function(){
-
+            console.log('please sign in now!')
         },
         saveResume:function(){
 
         }
-    }111222
+    }
 })
