@@ -9,7 +9,9 @@ var app = new Vue({
             jobTitle: '前端工程师',
             phone: '13700000000',
             email: 'example@example.com'
-        }
+        },
+        loginVisible:false,
+        signUpVisible:false
     },
     methods: {
         editdata:function(key,val){
@@ -24,7 +26,7 @@ var app = new Vue({
             }
         },
         showLogin:function(){
-            console.log('please sign in now!')
+            this.loginVisible = true;
         },
         saveResume:function(){
             console.log('save the resume')
