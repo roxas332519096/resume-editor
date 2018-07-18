@@ -29,5 +29,5 @@ var app = new Vue({
         saveResume:function(){
 
         }
-    }111
+    }111222
 })
