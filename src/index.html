@@ -13,12 +13,24 @@
 <body>
     <div id="app">
         <div class="resume">
-            <editable-sapn :value="resume.name" @input="editdata('name',$event)"></editable-sapn>
-            <editable-sapn :value="resume.gender" @input="editdata('gender',$event)"></editable-sapn>
-            <editable-sapn :value="resume.birthday" @input="editdata('birthday',$event)"></editable-sapn>
-            <editable-sapn :value="resume.jobTitle" @input="editdata('jobTitle',$event)"></editable-sapn>
-            <editable-sapn :value="resume.phone" @input="editdata('phone',$event)"></editable-sapn>
-            <editable-sapn :value="resume.email" @input="editdata('email',$event)"></editable-sapn>
+            <div class="about">
+                <h1>个人信息</h1>
+                <editable-sapn :value="resume.name" @input="editdata('name',$event)"></editable-sapn>
+                <editable-sapn :value="resume.gender" @input="editdata('gender',$event)"></editable-sapn>
+                <editable-sapn :value="resume.birthday" @input="editdata('birthday',$event)"></editable-sapn>
+                <editable-sapn :value="resume.jobTitle" @input="editdata('jobTitle',$event)"></editable-sapn>
+                <editable-sapn :value="resume.phone" @input="editdata('phone',$event)"></editable-sapn>
+                <editable-sapn :value="resume.email" @input="editdata('email',$event)"></editable-sapn>
+            </div>
+            <div class="skills">
+                <h1>技能</h1>
+            </div>
+            <div class="experience">
+                <h1>工作经历</h1>
+            </div>
+            <div class="production">
+                <h1>项目</h1>
+            </div>
         </div>
         <ul class="actions">
             <li v-show="!currentUser.id">
@@ -56,8 +68,8 @@
             </form>
         </div>
         <div class="signUp" v-show="signUpVisible" v-cloak>
-            <form class="form"  @submit.prevent="login">
-                <button @click="signUpVisible=false">关闭</button>
+            <form class="form"  @submit.prevent="signUp">
+                <button type="button" @click="signUpVisible=false">关闭</button>
                 <h2>注册</h2>
                 <div class="row">
                     <label>邮箱</label>

@@ -8,16 +8,39 @@
 }
 
 .resume {
+    flex-grow: 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    background: #ddd;
+}
+
+.resume div {
+    margin:20px 0;
+}
+
+.about {
+    display: flex;
+    border: 1px solid black;
+}
+
+.skills {
+    border: 1px solid black;
+}
+
+.experience {
+    border: 1px solid black;
+}
+
+.production {
     border: 1px solid black;
 }
 
 .actions {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
-    width: 300px;
+    width: 20vw;
+    height: 100vh;
     border: 1px solid black;
 }

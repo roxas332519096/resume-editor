@@ -1,13 +1,13 @@
 
-var app = new Vue({
+let app = new Vue({
     el: "#app",
     data: {
         editing: false,
         loginVisible: false,
         signUpVisible: false,
         currentUser:{
-            id:'',
-            email:''
+            id:undefined,
+            email:undefined
         },
         resume: {
             name: '姓名',
@@ -43,9 +43,10 @@ var app = new Vue({
             user.setPassword(this.signUpData.password);
             user.setEmail(this.signUpData.email);
             user.signUp().then((user) => {
-                this.loginVisible = true;
                 this.signUpVisible = false;
-                alert('注册成功')
+                alert('注册成功,自动登录中');
+                this.loginData = this.signUpData;
+                this.login()
             }, function (error) {
                 if (error.code === 125) {
                     alert('请输入正确格式的邮箱地址')
@@ -58,12 +59,8 @@ var app = new Vue({
             AV.User.logIn(this.loginData.email, this.loginData.password)
                 .then((user) => {
                     this.loginVisible = false;
-                    this.resume = user.attributes.resume
-                    this.currentUser = {
-                        id:user.id,
-                        email:user.attributes.email
-                    }
-                    alert('登录成功')
+                    this.getCurrentUser(user);
+                    this.getResume(user);
                 }, function (error) {
                     if (error.code === 210) {
                         alert('账号密码不匹配')
@@ -81,18 +78,29 @@ var app = new Vue({
             alert('登出成功')
         },
         saveResume: function () {
-            let id = AV.User.current().id
+            let id = AV.User.current().id;
             let user = AV.Object.createWithoutData('User', id);
             user.set('resume', this.resume);
             user.save();
             alert('保存成功');
+        },
+        getResume:function(user){
+            if(user.attributes.resume){
+                this.resume = user.attributes.resume;
+            }
+        },
+        getCurrentUser:function(user){
+            this.currentUser.id = user.id;
+            this.currentUser.email = user.attributes.email;
         }
     }
 })
 
 if(AV.User.current()){
-    let currentUser = AV.User.current()
-    app.currentUser.id = currentUser.id;
-    app.currentUser.email = currentUser.attributes.email;
-    app.resume = currentUser.attributes.resume;
+    let currentUser = AV.User.current();
+    app.getCurrentUser(currentUser);
+    let query = new AV.Query('User');
+    query.get(currentUser.id).then((user)=>{
+        app.getResume(user);
+    })
 }
