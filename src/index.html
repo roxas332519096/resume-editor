@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/signUp.css">
+    <link rel="stylesheet" href="./css/share.css">
 </head>
 <body>
     <div id="app">
@@ -24,12 +25,60 @@
             </div>
             <div class="skills">
                 <h1>技能</h1>
+                <ul>
+                    <li v-for="(skill,index) in resume.skills" class="skill">
+                        <editable-sapn :value="skill.name" @input="editdata('skills',$event,`${index}`,'name',)"></editable-sapn>
+                        <editable-sapn :value="skill.description" @input="editdata('skills',$event,`${index}`,'description',)"></editable-sapn>
+                        <span @click="remove('skills',index)">X</span>
+                    </li>
+                    <li @click="add('skills')">添加</li>
+                </li>
             </div>
             <div class="experience">
                 <h1>工作经历</h1>
+                <ul>
+                    <li v-for="(experience,index) in resume.experiences">
+                        <h2>
+                            <editable-sapn :value="experience.name" @input="editdata('experiences',$event,`${index}`,'name',)"></editable-sapn>
+                        </h2>
+                        <div class="time">
+                            <editable-sapn :value="experience.timeStart" @input="editdata('experiences',$event,`${index}`,'timeStart',)"></editable-sapn> -
+                            <editable-sapn :value="experience.timeEnd" @input="editdata('experiences',$event,`${index}`,'timeEnd',)"></editable-sapn>
+                        </div>
+                        <div class="jobTitle">
+                            <editable-sapn :value="experience.jobTitle" @input="editdata('experiences',$event,`${index}`,'jobTitle',)"></editable-sapn>
+                        </div>
+                        <div class="description">
+                            <editable-sapn :value="experience.description" @input="editdata('experiences',$event,`${index}`,'description',)"></editable-sapn>
+                        </div>
+                        <span @click="remove('experiences',index)">X</span>
+                    </li>
+                    <li @click="add('experiences')">添加</li>
+                </ul>
             </div>
             <div class="production">
                 <h1>项目</h1>
+                <ul>
+                    <li v-for="(production,index) in resume.productions">
+                        <h2>
+                            <editable-sapn :value="production.name" @input="editdata('productions',$event,`${index}`,'name',)"></editable-sapn>
+                        </h2>
+                        <div class="keywords">
+                            <editable-sapn :value="production.keywords" @input="editdata('productions',$event,`${index}`,'keywords',)"></editable-sapn>
+                        </div>
+                        <div class="links">
+                            <editable-sapn :value="production.linkView" @input="editdata('productions',$event,`${index}`,'linkView',)"></editable-sapn>
+                            <a :href="production.linkView">点击进入</a>
+                            <editable-sapn :value="production.link" @input="editdata('productions',$event,`${index}`,'link',)"></editable-sapn>
+                            <a :href="production.link">点击进入</a>
+                        </div>
+                        <div class="description">
+                            <editable-sapn :value="production.description" @input="editdata('productions',$event,`${index}`,'description',)"></editable-sapn>
+                        </div>
+                        <span @click="remove('productions',index)">X</span>
+                    </li>
+                    <li @click="add('productions')">添加</li>
+                </ul>
             </div>
         </div>
         <ul class="actions">
@@ -44,6 +93,9 @@
             </li>
             <li>
                 <button @click="save">保存</button>
+            </li>
+            <li>
+                <button @click="showShareLink">分享</button>
             </li>
             <li>
                 <button @click="logOut" v-show="currentUser.id">登出</button>
@@ -84,6 +136,11 @@
                     <a href="#" @click="loginVisible=true;signUpVisible=false">登录</a>
                 </div>
             </form>
+        </div>
+        <div class="share" v-show="shareVisible" v-cloak>
+            <h1>分享链接:</h1>
+            <span>{{shareLink}}</span>
+            <span @click="shareVisible=false">关闭</span>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>

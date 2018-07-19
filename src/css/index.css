@@ -27,6 +27,11 @@
     border: 1px solid black;
 }
 
+.skills .skill {
+    background: red;
+    padding: 10px;
+}
+
 .experience {
     border: 1px solid black;
 }
@@ -41,6 +46,6 @@
     flex-direction: column;
     align-items: center;
     width: 20vw;
-    height: 100vh;
+    height: 100%;
     border: 1px solid black;
 }
