@@ -11,6 +11,7 @@ let app = new Vue({
         },
         shareLink:undefined,
         shareVisible:false,
+        preview:false,
         resume: {
             name: '姓名',
             gender: '男',
@@ -110,6 +111,7 @@ let app = new Vue({
                     this.loginVisible = false;
                     this.getCurrentUser(user);
                     this.getResume(user);
+                    this.getShareLink(user);
                 }, function (error) {
                     if (error.code === 210) {
                         alert('账号密码不匹配')
@@ -167,24 +169,26 @@ let app = new Vue({
         remove:function(item,index){
             this.resume[item].splice(index,1);
         },
+        getShareLink:function(user){
+            this.shareLink = location.origin + location.pathname + '?user_id' + user.id
+            console.log(this.shareLink)
+        },
         showShareLink:function(){
             if (!this.currentUser.id) {
                 this.loginVisible = true;
             } else {
                 this.shareVisible = true;
             }
+        },
+        escPreviewMode() {
+            location = "http://localhost:8080/src"
+        },
+        print(){
+            window.print()
         }
     }
 })
 
-let search = location.search;
-let shareUserid = search.slice(8);
-if(shareUserid && shareUserid != app.currentUser.id){
-    let query = new AV.Query('User');
-    query.get(shareUserid).then((user)=>{
-        app.getResume(user)
-    })    
-}
 
 if(AV.User.current()){
     let currentUser = AV.User.current();
@@ -192,6 +196,19 @@ if(AV.User.current()){
     let query = new AV.Query('User');
     query.get(currentUser.id).then((user)=>{
         app.getResume(user);
+        app.getShareLink(user)
     })
-    app.shareLink = location.origin + location.pathname + '?user_id' + app.currentUser.id
+}
+
+let search = location.search;
+let shareUserid = search.slice(8);
+if(shareUserid){
+    app.preview = true;
+    let query = new AV.Query('User');
+    query.get(shareUserid).then((user)=>{
+        setTimeout(()=>{
+            app.getResume(user)
+            console.log('已切换')
+        },300)
+    })    
 }
