@@ -1,0 +1,13 @@
+@media print {
+    .resume {
+        padding:20px;
+    }
+    .actions {
+        display: none
+    }
+
+    button {
+        display: none;
+    }
+}
+

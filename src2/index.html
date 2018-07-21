@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简历在线编辑器</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/resume.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/signUp.css">
+    <link rel="stylesheet" href="./css/share.css">
+    <link rel="stylesheet" href="./css/print.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav>
+            <ul class="actions" v-show="preview" v-cloak>
+                <li>
+                    <span>预览模式
+                        <button @click="escPreviewMode">退出预览模式</button>
+                    </span>
+                </li>
+            </ul>
+            <ul class="actions" v-show="!preview">
+                <li v-show="!currentUser.id" v-cloak>
+                    请登录!
+                </li>
+                <li v-show="currentUser.id" v-cloak>
+                    当前用户: {{currentUser.email}}
+                </li>
+                <li>
+                    <button type="button" @click="loginVisible=true" v-show="!currentUser.id">登录</button>
+                </li>
+                <li>
+                    <button @click="editing=false" v-show="editing">预览</button>
+                </li>
+                <li>
+                    <button @click="editing=true" v-show="!editing" v-cloak>修改</button>
+                </li>
+                <li>
+                    <button @click="save">保存</button>
+                </li>
+                <li>
+                    <button @click="showShareLink">分享</button>
+                </li>
+                <li>
+                    <button @click="print">打印</button>
+                </li>
+                <li>
+                    <button>换肤</button>
+                </li>
+                <li>
+                    <button @click="logOut" v-show="currentUser.id">登出</button>
+                </li>
+            </ul>
+        </nav>
+        <div class="resume">
+            <div class="about">
+                <h1>个人信息</h1>
+                <editable-sapn :value="resume.name" :editing="editing" @input="editdata('name',$event)"></editable-sapn>
+                <editable-sapn :value="resume.gender" :editing="editing" @input="editdata('gender',$event)"></editable-sapn>
+                <editable-sapn :value="resume.birthday" :editing="editing" @input="editdata('birthday',$event)"></editable-sapn>
+                <editable-sapn :value="resume.jobTitle" :editing="editing" @input="editdata('jobTitle',$event)"></editable-sapn>
+                <editable-sapn :value="resume.phone" :editing="editing" @input="editdata('phone',$event)"></editable-sapn>
+                <editable-sapn :value="resume.email" :editing="editing" @input="editdata('email',$event)"></editable-sapn>
+            </div>
+            <div class="skills">
+                <h1>技能</h1>
+                <ul>
+                    <li v-for="(skill,index) in resume.skills" class="skill">
+                        <editable-sapn :value="skill.name" :editing="editing" @input="editdata('skills',$event,`${index}`,'name',)"></editable-sapn>
+                        <editable-sapn :value="skill.description" :editing="editing" @input="editdata('skills',$event,`${index}`,'description',)"></editable-sapn>
+                        <span @click="remove('skills',index)" v-show="!preview">X</span>
+                    </li>
+                    <li @click="add('skills')" v-show="!preview">添加</li>
+                    </li>
+            </div>
+            <div class="experience">
+                <h1>工作经历</h1>
+                <ul>
+                    <li v-for="(experience,index) in resume.experiences">
+                        <h2>
+                            <editable-sapn :value="experience.name" :editing="editing" @input="editdata('experiences',$event,`${index}`,'name',)"></editable-sapn>
+                        </h2>
+                        <div class="time">
+                            <editable-sapn :value="experience.timeStart" :editing="editing" @input="editdata('experiences',$event,`${index}`,'timeStart',)"></editable-sapn> -
+                            <editable-sapn :value="experience.timeEnd" :editing="editing" @input="editdata('experiences',$event,`${index}`,'timeEnd',)"></editable-sapn>
+                        </div>
+                        <div class="jobTitle">
+                            <editable-sapn :value="experience.jobTitle" :editing="editing" @input="editdata('experiences',$event,`${index}`,'jobTitle',)"></editable-sapn>
+                        </div>
+                        <div class="description">
+                            <editable-sapn :value="experience.description" :editing="editing" @input="editdata('experiences',$event,`${index}`,'description',)"></editable-sapn>
+                        </div>
+                        <span @click="remove('experiences',index)" v-show="!preview">X</span>
+                    </li>
+                    <li @click="add('experiences')" v-show="!preview">添加</li>
+                </ul>
+            </div>
+            <div class="production">
+                <h1>项目</h1>
+                <ul>
+                    <li v-for="(production,index) in resume.productions">
+                        <h2>
+                            <editable-sapn :value="production.name" :editing="editing" @input="editdata('productions',$event,`${index}`,'name',)"></editable-sapn>
+                        </h2>
+                        <div class="keywords">
+                            <editable-sapn :value="production.keywords" :editing="editing" @input="editdata('productions',$event,`${index}`,'keywords',)"></editable-sapn>
+                        </div>
+                        <div class="links">
+                            <editable-sapn :value="production.linkView" :editing="editing" @input="editdata('productions',$event,`${index}`,'linkView',)"></editable-sapn>
+                            <a :href="production.linkView">点击进入</a>
+                            <editable-sapn :value="production.link" :editing="editing" @input="editdata('productions',$event,`${index}`,'link',)"></editable-sapn>
+                            <a :href="production.link">点击进入</a>
+                        </div>
+                        <div class="description">
+                            <editable-sapn :value="production.description" :editing="editing" @input="editdata('productions',$event,`${index}`,'description',)"></editable-sapn>
+                        </div>
+                        <span @click="remove('productions',index)" v-show="!preview">X</span>
+                    </li>
+                    <li @click="add('productions')" v-show="!preview">添加</li>
+                </ul>
+            </div>
+        </div>
+        <login v-show="loginVisible" @close="loginVisible=false" @open="signUpVisible=true;loginVisible=false" @login="logIn($event)"></login>
+        <sign-up v-show="signUpVisible" @close="signUpVisible=false" @open="loginVisible=true;signUpVisible=false"></sign-up>
+        <share-link v-show="shareVisible" :share-link="shareLink" @close="shareVisible=false"></share-link>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.7.3/dist/av-min.js"></script>
+    <script src="./js/av.js"></script>
+    <script src="./js/editable-span.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/signUp.js"></script>
+    <script src="./js/shareLink.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
