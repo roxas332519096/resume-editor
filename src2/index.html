@@ -18,45 +18,57 @@
 <body>
     <div id="app">
         <nav>
-            <ul class="actions" v-show="preview" v-cloak>
-                <li>
-                    <span>预览模式
-                        <button @click="escPreviewMode">退出预览模式</button>
-                    </span>
-                </li>
-            </ul>
-            <ul class="actions" v-show="!preview">
-                <li v-show="!currentUser.id" v-cloak>
-                    请登录!
-                </li>
-                <li v-show="currentUser.id" v-cloak>
-                    当前用户: {{currentUser.email}}
-                </li>
-                <li>
-                    <button type="button" @click="loginVisible=true" v-show="!currentUser.id">登录</button>
-                </li>
-                <li>
-                    <button @click="editing=false" v-show="editing">预览</button>
-                </li>
-                <li>
-                    <button @click="editing=true" v-show="!editing" v-cloak>修改</button>
-                </li>
-                <li>
-                    <button @click="save">保存</button>
-                </li>
-                <li>
-                    <button @click="showShareLink">分享</button>
-                </li>
-                <li>
-                    <button @click="print">打印</button>
-                </li>
-                <li>
-                    <button>换肤</button>
-                </li>
-                <li>
-                    <button @click="logOut" v-show="currentUser.id">登出</button>
-                </li>
-            </ul>
+            <div class="actions" v-show="preview" v-cloak>
+                <ul class="pm">
+                    <button @click="escPreviewMode">退出预览模式</button>
+                </ul>
+            </div>
+            <div class="actions" v-show="!preview">
+                <ul v-show="currentUser.id" v-cloak class="currentUser">
+                    <li>
+                        <span>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon-user"></use>
+                            </svg>
+                        </span>
+                        <span v-cloak>{{currentUser.email}}</span>
+                    </li>
+                    <li>
+                        <button @click="logOut" v-show="currentUser.id">登出</button>
+                    </li>
+                </ul>
+                <ul class="buttons">
+                    <li class="logo">
+                        <span>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-ico_compile"></use>
+                            </svg>
+                        </span>
+                        <span>简历编辑器</span>
+                    </li>
+                    <li v-show="!currentUser.id">
+                        <button type="button" @click="loginVisible=true">登录</button>
+                    </li>
+                    <li v-show="editing">
+                        <button @click="editing=false">预览</button>
+                    </li>
+                    <li v-show="!editing">
+                        <button @click="editing=true" v-cloak>修改</button>
+                    </li>
+                    <li>
+                        <button @click="save">保存</button>
+                    </li>
+                    <li>
+                        <button @click="showShareLink">分享</button>
+                    </li>
+                    <li>
+                        <button @click="print">打印</button>
+                    </li>
+                    <li>
+                        <button>换肤</button>
+                    </li>
+                </ul>
+            </div>
         </nav>
         <div class="resume">
             <div class="about">
@@ -133,6 +145,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.7.3/dist/av-min.js"></script>
     <script src="./js/av.js"></script>
+    <script src="//at.alicdn.com/t/font_758059_1jof69f2xub.js"></script>
     <script src="./js/editable-span.js"></script>
     <script src="./js/login.js"></script>
     <script src="./js/signUp.js"></script>

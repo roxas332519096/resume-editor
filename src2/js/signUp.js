@@ -1,22 +1,41 @@
 Vue.component('sign-up',{
     template:`
     <div class="signUp" v-cloak>
-    <form class="form"  @submit.prevent="signUp">
-        <button type="button" @click="closeSignUp">关闭</button>
-        <h2>注册</h2>
-        <div class="row">
-            <label>邮箱</label>
-            <input type="text" v-model="signUpData.email">
-        </div>
-        <div class="row">
-            <label>密码</label>
-            <input type="password" v-model="signUpData.password">
-        </div>
-        <div class="row">
-            <button type="submit">注册</button>
-            <a href="#" @click="openLogin">登录</a>
-        </div>
-    </form>
+        <form class="form"  @submit.prevent="signUp">
+            <h2>Sign Up</h2>
+            <div class="row">
+                <label>
+                    <span>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-icon-user"></use>
+                        </svg>
+                    </span>
+                <input type="text" v-model="signUpData.email" placeholder="Email">
+            </label>
+            </div>
+            <div class="row">
+                <label>
+                    <span>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-ai-password"></use>
+                        </svg>
+                        </span>
+                    <input type="password" v-model="signUpData.password" placeholder="Password">
+                </label>
+            </div>
+            <div class="row">
+                <button type="submit">注册</button>
+            </div>
+            <div class="row">
+                <button type="button" @click="openLogin">登录</button>
+            </div>
+            <span class="close" @click="closeSignUp">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-2guanbi"></use>
+                </svg>
+            </span>
+        </form>
+    </div>
     `,
     data:function(){
         return {

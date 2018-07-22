@@ -1,4 +1,6 @@
-input[type=text]{
+.resume {
+    width: 80%;
+    margin-top:70px;
     background: #ddd;
-    border: 1px solid red;
+    border: 1px solid black;
 }

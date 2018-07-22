@@ -2,19 +2,39 @@ Vue.component('login',{
     template:`
     <div class="login" v-cloak>
         <form class="form"  @submit.prevent="login">
-                <h2>登录</h2>
+            <h2>Login</h2>
             <div class="row">
-                <label>邮箱</label>
-                <input type="text" v-model="loginData.email">
+                <label>
+                    <span>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-icon-user"></use>
+                        </svg>
+                    </span>
+                    <input type="text" v-model="loginData.email" placeholder="Email">
+                </label>
             </div>
             <div class="row">
-                <label>密码</label>
-                <input type="password" v-model="loginData.password">
+                <label>
+                <span>
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-ai-password"></use>
+                </svg>
+                </span>
+                <input type="password" v-model="loginData.password" placeholder="Password">
+                </label>
             </div>
+            <div class="row">
                 <button type="submit">登录</button>
+            </div>
+            <div class="row">
+                <button @click="openSignUp" type="button">注册</button>
+            </div>
+                <span class="close" @click="closeLogin">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-2guanbi"></use>
+                    </svg>
+                </span>
         </form>
-        <a href="#" @click="openSignUp">注册</a>
-        <button type="button" @click="closeLogin">关闭</button>
     </div>
     `,
     data:function(){

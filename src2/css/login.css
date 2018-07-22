@@ -7,45 +7,78 @@
     top:50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 326px;
-    height: 576px;
+    width: 434px;
+    height: 400px;
     background: #fff;
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
 }
 
 .login .form {
     display: flex;
-    background: rgb(72, 77, 246);
-    width: 326px;
-    height: 326px;
-    border-radius: 50%;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+    width: 320px;
+    color: rgb(13, 133, 231);
+}
+
+.login h2 {
+    line-height: 138px;
+    height: 138px;
+    font-size: 40px;
+}
+
+.login .row {
+    margin-bottom: 20px;
+}
+
+.login label {
+    display: flex;
+    height: 44px;
+}
+
+.login label span{
+    text-align: center;
+    width: 44px;
+    line-height: 44px;
+    background: rgb(13, 133, 231);
     color: #fff;
 }
 
-.login .form .row {
-    border: 1px solid #fff;
-    width: 192px;
-    height: 42px;
-    border-radius: 42px;
-    line-height: 42px;
-    padding-left:18px;
+.login input {
+    padding-left: 20px;
+    flex-grow: 1;
+    background: rgb(230, 230, 230);
+    color: rgb(13, 133, 231);
+    height: 100%;
 }
 
-.login .form input{
-    background: inherit;
-    border: ;
+.login button{
+    width: 320px;
+    border: none;
+    color: #fff;
+    background: rgb(13, 133, 231);
+    height: 44px;
 }
 
-.login .form button[type="submit"] {
-    background: #fff;
-    border: 1px solid #fff;
-    color: rgb(72, 77, 246);
-    width: 192px;
-    height: 42px;
-    border-radius: 42px;
-    font-weight: bold;
+.login .close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
 }
+
+.login .icon {
+    width: 1.3em; height: 1.3em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+
+ .login .close .icon{
+    width: 2em;height: 2em;
+ }
+
+ 
+
 
 
 
