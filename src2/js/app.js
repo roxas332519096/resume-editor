@@ -14,9 +14,9 @@ let app = new Vue({
         preview:false,
         resume: {
             name: '姓名',
-            gender: '男',
-            birthday: '1990年1月',
-            jobTitle: '前端工程师',
+            gender: '性别',
+            birthday: '出生年月',
+            jobTitle: '意向职位',
             phone: '13700000000',
             email: 'example@example.com',
             skills: [
@@ -40,7 +40,7 @@ let app = new Vue({
             experiences:[
                 {
                     name:'请填写公司名称',
-                    timeStart:'请填写开始时间',
+                    time:'1990年1月-1990年2月',
                     timeEnd:'请填写结束时间',
                     jobTitle:'请填写职位名称',
                     description:'请填写描述信息'
@@ -115,8 +115,7 @@ let app = new Vue({
             }else if(item === 'experiences'){
                 this.resume[item].push({
                     name:'请填写公司名称',
-                    timeStart:'请填写开始时间',
-                    timeEnd:'请填写结束时间',
+                    time:'1990年1月-1990年2月',
                     jobTitle:'请填写职位名称',
                     description:'请填写描述信息'
                 })

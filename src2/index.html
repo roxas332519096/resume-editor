@@ -71,73 +71,147 @@
             </div>
         </nav>
         <div class="resume">
-            <div class="about">
-                <h1>个人信息</h1>
-                <editable-sapn :value="resume.name" :editing="editing" @input="editdata('name',$event)"></editable-sapn>
-                <editable-sapn :value="resume.gender" :editing="editing" @input="editdata('gender',$event)"></editable-sapn>
-                <editable-sapn :value="resume.birthday" :editing="editing" @input="editdata('birthday',$event)"></editable-sapn>
-                <editable-sapn :value="resume.jobTitle" :editing="editing" @input="editdata('jobTitle',$event)"></editable-sapn>
-                <editable-sapn :value="resume.phone" :editing="editing" @input="editdata('phone',$event)"></editable-sapn>
-                <editable-sapn :value="resume.email" :editing="editing" @input="editdata('email',$event)"></editable-sapn>
-            </div>
-            <div class="skills">
-                <h1>技能</h1>
-                <ul>
-                    <li v-for="(skill,index) in resume.skills" class="skill">
-                        <editable-sapn :value="skill.name" :editing="editing" @input="editdata('skills',$event,`${index}`,'name',)"></editable-sapn>
-                        <editable-sapn :value="skill.description" :editing="editing" @input="editdata('skills',$event,`${index}`,'description',)"></editable-sapn>
-                        <span @click="remove('skills',index)" v-show="!preview">X</span>
-                    </li>
-                    <li @click="add('skills')" v-show="!preview">添加</li>
-                    </li>
-            </div>
-            <div class="experience">
-                <h1>工作经历</h1>
-                <ul>
-                    <li v-for="(experience,index) in resume.experiences">
-                        <h2>
-                            <editable-sapn :value="experience.name" :editing="editing" @input="editdata('experiences',$event,`${index}`,'name',)"></editable-sapn>
-                        </h2>
-                        <div class="time">
-                            <editable-sapn :value="experience.timeStart" :editing="editing" @input="editdata('experiences',$event,`${index}`,'timeStart',)"></editable-sapn> -
-                            <editable-sapn :value="experience.timeEnd" :editing="editing" @input="editdata('experiences',$event,`${index}`,'timeEnd',)"></editable-sapn>
-                        </div>
-                        <div class="jobTitle">
-                            <editable-sapn :value="experience.jobTitle" :editing="editing" @input="editdata('experiences',$event,`${index}`,'jobTitle',)"></editable-sapn>
-                        </div>
-                        <div class="description">
-                            <editable-sapn :value="experience.description" :editing="editing" @input="editdata('experiences',$event,`${index}`,'description',)"></editable-sapn>
-                        </div>
-                        <span @click="remove('experiences',index)" v-show="!preview">X</span>
-                    </li>
-                    <li @click="add('experiences')" v-show="!preview">添加</li>
-                </ul>
-            </div>
-            <div class="production">
-                <h1>项目</h1>
-                <ul>
-                    <li v-for="(production,index) in resume.productions">
-                        <h2>
-                            <editable-sapn :value="production.name" :editing="editing" @input="editdata('productions',$event,`${index}`,'name',)"></editable-sapn>
-                        </h2>
-                        <div class="keywords">
-                            <editable-sapn :value="production.keywords" :editing="editing" @input="editdata('productions',$event,`${index}`,'keywords',)"></editable-sapn>
-                        </div>
-                        <div class="links">
-                            <editable-sapn :value="production.linkView" :editing="editing" @input="editdata('productions',$event,`${index}`,'linkView',)"></editable-sapn>
-                            <a :href="production.linkView">点击进入</a>
-                            <editable-sapn :value="production.link" :editing="editing" @input="editdata('productions',$event,`${index}`,'link',)"></editable-sapn>
-                            <a :href="production.link">点击进入</a>
-                        </div>
-                        <div class="description">
-                            <editable-sapn :value="production.description" :editing="editing" @input="editdata('productions',$event,`${index}`,'description',)"></editable-sapn>
-                        </div>
-                        <span @click="remove('productions',index)" v-show="!preview">X</span>
-                    </li>
-                    <li @click="add('productions')" v-show="!preview">添加</li>
-                </ul>
-            </div>
+            <section class="about">
+                <div>
+                    <img src="" alt="">
+                    <h2>基本信息</h2>
+                    <ul>
+                        <li>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-xingbie"></use>
+                            </svg>
+                            <editable-sapn :value="resume.gender" :editing="editing" @input="editdata('gender',$event)"></editable-sapn>
+                        </li>
+                        <li>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-shengri"></use>
+                            </svg>
+                            <editable-sapn :value="resume.birthday" :editing="editing" @input="editdata('birthday',$event)"></editable-sapn>
+                        </li>
+                        <li>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-zhiye"></use>
+                            </svg>
+                            <editable-sapn :value="resume.jobTitle" :editing="editing" @input="editdata('jobTitle',$event)"></editable-sapn>
+                        </li>
+                        <li>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-dianhua"></use>
+                            </svg>
+                            <editable-sapn :value="resume.phone" :editing="editing" @input="editdata('phone',$event)"></editable-sapn>
+                        </li>
+                        <li>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-youjian"></use>
+                            </svg>
+                            <editable-sapn :value="resume.email" :editing="editing" @input="editdata('email',$event)"></editable-sapn>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="context">
+                <editable-sapn :value="resume.name" :editing="editing" @input="editdata('name',$event)" class="name"></editable-sapn>
+                <div class="skills">
+                    <header>
+                        <span class="icon-container">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-xing"></use>
+                            </svg>
+                        </span>
+                        <span>技能</span>
+                        <span class="line"></span>
+                    </header>
+                    <ul>
+                        <li v-for="(skill,index) in resume.skills" class="skill">
+                            <editable-sapn :value="skill.name" :editing="editing" @input="editdata('skills',$event,`${index}`,'name',)" class="name"></editable-sapn>
+                            <editable-sapn :value="skill.description" :editing="editing" @input="editdata('skills',$event,`${index}`,'description',)"
+                                class="description"></editable-sapn>
+                            <span @click="remove('skills',index)" v-show="editing" class="close">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-2guanbi"></use>
+                                </svg>
+                            </span>
+                        </li>
+                        <li @click="add('skills')" v-show="editing" class="add">添加</li>
+                        </li>
+                </div>
+                <div class="experience">
+                    <header>
+                        <span class="icon-container">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-xing"></use>
+                            </svg>
+                        </span>
+                        <span>工作经验</span>
+                        <span class="line"></span>
+                    </header>
+                    <ul>
+                        <li v-for="(experience,index) in resume.experiences">
+                            <h2>
+                                <editable-sapn :value="experience.name" :editing="editing" @input="editdata('experiences',$event,`${index}`,'name',)"></editable-sapn>
+                            </h2>
+                            <div class="time">
+                                <editable-sapn :value="experience.time" :editing="editing" @input="editdata('experiences',$event,`${index}`,'time',)">
+                            </div>
+                            <div class="jobTitle">
+                                <editable-sapn :value="experience.jobTitle" :editing="editing" @input="editdata('experiences',$event,`${index}`,'jobTitle',)"></editable-sapn>
+                            </div>
+                            <div class="description">
+                                <editable-sapn :value="experience.description" :editing="editing" @input="editdata('experiences',$event,`${index}`,'description',)"
+                                    class="description"></editable-sapn>
+                            </div>
+                            <span @click="remove('experiences',index)" v-show="editing" class="close">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-2guanbi"></use>
+                                </svg>
+                            </span>
+                        </li>
+                        <li @click="add('experiences')" v-show="editing" class="add">添加</li>
+                    </ul>
+                </div>
+                <div class="productions">
+                    <header>
+                        <span class="icon-container">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-xing"></use>
+                            </svg>
+                        </span>
+                        <span>项目</span>
+                        <span class="line"></span>
+                    </header>
+                    <ul>
+                        <li v-for="(production,index) in resume.productions">
+                            <h2>
+                                <editable-sapn :value="production.name" :editing="editing" @input="editdata('productions',$event,`${index}`,'name',)"></editable-sapn>
+                            </h2>
+                            <div class="keywords">
+                                <editable-sapn :value="production.keywords" :editing="editing" @input="editdata('productions',$event,`${index}`,'keywords',)"></editable-sapn>
+                            </div>
+                            <div class="linkView">
+                                代码链接:
+                                <editable-sapn :value="production.linkView" :editing="editing" @input="editdata('productions',$event,`${index}`,'linkView',)" v-show="editing"></editable-sapn>
+                                <a :href="production.linkView" v-show="!editing">点击进入</a>
+                            </div>
+                            <div class="link">
+                                预览链接:
+                                <editable-sapn :value="production.link" :editing="editing" @input="editdata('productions',$event,`${index}`,'link',)" v-show="editing"></editable-sapn>
+                                <a :href="production.link" v-show="!editing">点击进入</a>
+                            </div>
+                            <div class="description">
+                                <editable-sapn :value="production.description" :editing="editing" @input="editdata('productions',$event,`${index}`,'description',)"></editable-sapn>
+                            </div>
+                            <span @click="remove('productions',index)" v-show="editing" class="close">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-2guanbi"></use>
+                                </svg>
+                            </span>
+                        </li>
+                        <li @click="add('productions')" v-show="editing" class="add">添加</li>
+                    </ul>
+                </div>
         </div>
+        </section>
+
         <login v-show="loginVisible" @close="loginVisible=false" @open="signUpVisible=true;loginVisible=false" @login="logIn($event)"></login>
         <sign-up v-show="signUpVisible" @close="signUpVisible=false" @open="loginVisible=true;signUpVisible=false"></sign-up>
         <share-link v-show="shareVisible" :share-link="shareLink" @close="shareVisible=false"></share-link>
@@ -145,11 +219,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.7.3/dist/av-min.js"></script>
     <script src="./js/av.js"></script>
-    <script src="//at.alicdn.com/t/font_758059_1jof69f2xub.js"></script>
+    <script src="//at.alicdn.com/t/font_758059_qce9crhygah.js"></script>
     <script src="./js/editable-span.js"></script>
     <script src="./js/login.js"></script>
     <script src="./js/signUp.js"></script>
     <script src="./js/shareLink.js"></script>
     <script src="./js/app.js"></script>
 </body>
+
 </html>

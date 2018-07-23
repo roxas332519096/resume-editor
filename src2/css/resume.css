@@ -1,6 +1,285 @@
 .resume {
-    width: 80%;
-    margin-top:70px;
-    background: #ddd;
-    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    width: 820px;
+    padding:70px 50px 20px;
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.75);
+
 }
+
+.resume input {
+    width: 96%;
+    height: 1.2em;
+    padding-top: -1px;
+    border: 1px solid rgb(13, 133, 231);
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+input:focus{
+    border: 1px solid blue;
+}
+
+.resume span {
+    height: 1.2em;
+}
+
+.icon {
+    width: 1.3em; height: 1.3em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+
+.close .icon{
+    width: 1em;height: 1em;
+    fill: red;
+ }
+
+section {
+    display: flex;
+}
+
+section.about {
+    justify-content: center;
+    width: 270px;
+    background: rgb(13, 133, 231);
+}
+
+section.about img {
+    margin:40px auto 52px;
+    display: block;
+    width: 130px;
+    height: 160px;
+    border: 4px solid #ddd;
+}
+
+section.about h2 {
+    text-align: center;
+    margin-left: 14px;
+    width: 284px;
+    height: 56px;
+    line-height: 56px;
+    color: #fff;
+    background: rgb(10, 107, 185);
+}
+
+section.about ul {
+    margin-left: 34px;
+}
+
+section.about ul li {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    color: #fff;
+}
+
+section.about ul li .icon{
+    margin-right: 5px;
+    width: 1.3em; height: 1.3em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+section.context {
+    flex-grow: 1;
+    padding:0 30px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 470px;
+    color: rgb(65, 65, 65);
+}
+
+section.context > .name {
+    margin-top: 55px;
+    margin-left: 20px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+section.context header {
+    display: flex;
+    align-items: center;
+    color: rgb(13, 133, 231);
+}
+
+section.context header span {
+    margin: 30px 5px 15px;
+}
+
+section.context header .icon-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background: rgb(13, 133, 231);
+    border-radius: 50%;
+}
+
+section.context header .icon {
+    width: 1.3em; height: 1.3em;
+    vertical-align: -0.15em;
+    fill: #fff;
+    overflow: hidden;
+}
+section.context header .line {
+    display: block;
+    height: 4px;
+    flex-grow: 1;
+    border:2px solid rgb(13, 133, 231);
+}
+
+section.context ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+section.context ul li:hover {
+    border: 1px solid blue;
+}
+
+section.context  li {
+    position: relative;
+    border: 1px solid rgb(13, 133, 231);
+    border-radius: 7px;
+    padding: 0 10px;
+}
+
+section.context .skills ul li {
+    margin-bottom: 10px;
+    width: 49%;
+    height: 120px;
+}
+
+section.context ul li.add {
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    color: rgb(13, 133, 231);
+    transition: 0.3s;
+}
+
+section.context ul li.add:hover{
+    background: rgb(13, 133, 231);
+    color: #fff;
+}
+
+section.context ul li .close {
+    position: absolute;
+    top:-2px;
+    right:0;
+    cursor: pointer;
+}
+
+section.context .skills ul li.add {
+    line-height: 120px;
+}
+
+
+section.context .skills ul li .name {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+
+section.context .skills ul li .description {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+section.context .skills ul li .description span {
+    display: block;
+    width: 100%;
+    height: 60px;
+    line-height: 1.5em;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+
+section.context .experience ul li {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    height: 205px;
+}
+
+section.context .experience ul li.add {
+    line-height: 205px;
+}
+
+section.context .experience ul li span,
+section.context .experience ul li input {
+    display: block;
+    margin:10px 0;
+}
+
+section.context .experience ul li .description span {
+    width: 100%;
+    font-size: 14px;
+    height: 88px;
+    line-height: 1.5em;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+section.context .productions ul li {
+    margin-bottom: 10px;
+    width: 100%;
+    height: 250px;
+}
+
+section.context .productions ul li.add {
+    line-height: 250px;
+}
+
+section.context .productions ul li span,
+section.context .productions ul li input {
+    display: block;
+    margin:10px 0;
+    overflow: hidden;
+}
+
+
+section.context .productions ul li a {
+    text-align: center;
+    margin:5px 5px;
+    padding:0 5px;
+    font-size: 14px;
+    height: 1.5em;
+    line-height: 1.5em;
+    border: 1px solid rgb(13, 133, 231);
+    color: rgb(13, 133, 231);
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+section.context .productions ul li a:hover {
+    background: rgb(13, 133, 231);
+    color: #fff;
+}
+section.context .productions ul li .description span{
+    height: 88px;
+    font-size: 14px;
+    line-height: 1.5em;
+    word-break: break-all;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
