@@ -11,6 +11,8 @@ let app = new Vue({
         },
         shareLink:undefined,
         shareVisible:false,
+        changestyleVisible:false,
+        color:'blue',
         preview:false,
         resume: {
             name: '姓名',
@@ -148,8 +150,8 @@ let app = new Vue({
         print(){
             window.print()
         },
-        nav(){
-            console.log(1)
+        changeStyle(color){
+            this.color = color;
         }
     },
 })

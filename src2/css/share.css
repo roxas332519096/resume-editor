@@ -3,15 +3,35 @@
     top:50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 400px;
-    height: 400px;
-    background: green;
-}
-
-.share .span {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
+    width: 400px;
+    height: 300px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+}
+
+.share h1 {
+    width: 100%;
+    color: rgb(13, 133, 231);
+    padding-bottom: 10px;
+    border-bottom: 5px solid rgb(13, 133, 231);
+}
+
+.share span {
     flex-wrap: wrap;
+    font-size: 14px;
+}
+
+.share .link {
+    margin-top: -100px;
+}
+
+.share .close .icon{
+    width: 2em;height: 2em;
+    fill: rgb(13, 133, 231);
+    cursor: pointer;
 }

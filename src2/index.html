@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="./css/signUp.css">
     <link rel="stylesheet" href="./css/share.css">
     <link rel="stylesheet" href="./css/print.css">
+    <link rel="stylesheet" href="./css/changstyle.css">
+    <link rel="stylesheet" href="./css/style-blue.css">
+    <link rel="stylesheet" href="./css/style-red.css">
+    <link rel="stylesheet" href="./css/style-green.css">
 </head>
 
 <body>
@@ -65,12 +69,12 @@
                         <button @click="print">打印</button>
                     </li>
                     <li>
-                        <button>换肤</button>
+                        <button @click="changestyleVisible=!changestyleVisible">换肤</button>
                     </li>
                 </ul>
             </div>
         </nav>
-        <div class="resume">
+        <div class="resume" :color="color">
             <section class="about">
                 <div>
                     <img src="" alt="">
@@ -215,6 +219,27 @@
         <login v-show="loginVisible" @close="loginVisible=false" @open="signUpVisible=true;loginVisible=false" @login="logIn($event)"></login>
         <sign-up v-show="signUpVisible" @close="signUpVisible=false" @open="loginVisible=true;signUpVisible=false"></sign-up>
         <share-link v-show="shareVisible" :share-link="shareLink" @close="shareVisible=false"></share-link>
+        <div class="changestyle" v-show="changestyleVisible" v-cloak>
+            <div class="container">
+                <ul>
+                    <li>
+                        <div class="button blue" @click="changeStyle('blue')"></div>
+                    </li>
+                    <li>
+                        <div class="button red" @click="changeStyle('red')"></div>
+                    </li>
+                    <li>
+                        <div class="button green" @click="changeStyle('green')"></div>
+                    </li>
+                </ul>
+                <span @click="changestyleVisible=false" class="close">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-2guanbi"></use>
+                    </svg>
+                </span>
+            </div>
+        
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.7.3/dist/av-min.js"></script>

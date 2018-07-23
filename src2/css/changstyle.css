@@ -1,0 +1,56 @@
+.changestyle .container {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    top:60px;
+    left: 0;
+    width: 200px;
+    height: 80%;
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+}
+
+.changestyle ul {
+    padding: 10px;
+}
+
+.changestyle ul li {
+    margin: 10px;
+}
+
+.changestyle ul li .button{
+    display: block;
+    border: none;
+    width: 70px;
+    height: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.changestyle ul li .button.red{
+    background: rgb(218, 24, 15);
+}
+.changestyle ul li .button.blue{
+    background: rgb(13, 133, 231);
+}
+
+.changestyle ul li .button.green{
+    background: green;
+}
+
+.changestyle span {
+    padding: 20px 0;
+    margin: 0 auto;
+    display: block;
+    width: 90%;
+    text-align: center;
+    cursor: pointer;
+    border-top:1px solid #ddd;
+}
+
+.changestyle .close .icon{
+    width: 2em;height: 2em;
+    fill: rgb(13, 133, 231);
+}
+

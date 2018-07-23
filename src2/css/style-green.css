@@ -1,0 +1,54 @@
+.resume[color="green"] input {
+    border: 1px solid rgb(55,183,84);
+}
+
+.resume[color="green"] input:focus{
+    border: 1px solid green;
+}
+
+.resume[color="green"] section.about {
+    background: rgb(55,183,84);
+}
+
+.resume[color="green"] section.about h2 {
+    background: rgb(74,190,100);
+}
+
+.resume[color="green"] section.context header {
+    color: rgb(55,183,84);
+}
+
+.resume[color="green"] section.context header .icon-container{
+    background: rgb(55,183,84);
+}
+
+.resume[color="green"] section.context header .line {
+    border:2px solid rgb(55,183,84);
+}
+
+.resume[color="green"] section.context ul li:hover {
+    border: 1px solid green;
+}
+
+.resume[color="green"] section.context  li {
+    border: 1px solid rgb(55,183,84);
+}
+
+.resume[color="green"] section.context ul li.add {
+    color: rgb(55,183,84);
+}
+
+.resume[color="green"] section.context ul li.add:hover{
+    background: rgb(55,183,84);
+    color: #fff;
+}
+
+.resume[color="green"] section.context .productions ul li a {
+    border: 1px solid rgb(55,183,84);
+    color: rgb(55,183,84);
+}
+
+.resume[color="green"] section.context .productions ul li a:hover {
+    background: rgb(55,183,84);
+    color: #fff;
+}
