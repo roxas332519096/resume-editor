@@ -30,7 +30,9 @@ nav.sticky {
     box-shadow: 0 0 5px 0 #000;
 }
 
-nav button {
+nav button,
+nav a {
+    font-size: 14px;
     background: #fff;
     color: rgb(13, 133, 231);
     padding:0 20px;
@@ -39,7 +41,8 @@ nav button {
     transition: 0.3s;
 }
 
-nav button:hover {
+nav button:hover,
+nav a:hover {
     color: #fff;
     background: rgb(13, 133, 231);
 }

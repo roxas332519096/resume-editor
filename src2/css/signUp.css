@@ -52,7 +52,11 @@
     height: 100%;
 }
 
-.signUp button{
+.signUp button,
+.signUp a{
+    text-align: center;
+    font-size: 14px;
+    line-height: 44px;
     width: 320px;
     border: none;
     color: #fff;

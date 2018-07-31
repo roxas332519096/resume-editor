@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>简历在线编辑器</title>
+    <title>my resume-简历在线编辑平台</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/resume.css">
@@ -51,7 +51,7 @@
                         <span>简历编辑器</span>
                     </li>
                     <li v-show="!currentUser.id">
-                        <button type="button" @click="loginVisible=true">登录</button>
+                        <router-link to="/login" @login="logIn">登录</router-link>
                     </li>
                     <li v-show="editing">
                         <button @click="editing=false">预览</button>
@@ -216,8 +216,7 @@
         </div>
         </section>
 
-        <login v-show="loginVisible" @close="loginVisible=false" @open="signUpVisible=true;loginVisible=false" @login="logIn($event)"></login>
-        <sign-up v-show="signUpVisible" @close="signUpVisible=false" @open="loginVisible=true;signUpVisible=false"></sign-up>
+        <router-view @login="logIn"></router-view>
         <share-link v-show="shareVisible" :share-link="shareLink" @close="shareVisible=false"></share-link>
         <div class="changestyle" v-show="changestyleVisible" v-cloak>
             <div class="container">
@@ -242,6 +241,7 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.7.3/dist/av-min.js"></script>
     <script src="./js/av.js"></script>
     <script src="//at.alicdn.com/t/font_758059_qce9crhygah.js"></script>

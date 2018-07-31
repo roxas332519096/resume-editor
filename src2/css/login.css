@@ -52,7 +52,11 @@
     height: 100%;
 }
 
-.login button{
+.login button,
+.login a{
+    text-align: center;
+    font-size: 14px;
+    line-height: 44px;
     width: 320px;
     border: none;
     color: #fff;

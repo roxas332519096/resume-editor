@@ -1,10 +1,15 @@
+let router = new VueRouter({
+    routes:[
+        {path:'/login',component:login},
+        {path:'/signUp',component:signUp}
+    ]
+}) 
 
 let app = new Vue({
     el: "#app",
+    router:router,
     data: {
         editing: false,
-        loginVisible: false,
-        signUpVisible: false,
         currentUser:{
             id:undefined,
             email:undefined
@@ -76,7 +81,7 @@ let app = new Vue({
         },
         save: function () {
             if (!this.currentUser.id) {
-                this.loginVisible = true;
+                this.$router.push('/login');
             } else {
                 this.saveResume()
             }
@@ -139,7 +144,7 @@ let app = new Vue({
         },
         showShareLink:function(){
             if (!this.currentUser.id) {
-                this.loginVisible = true;
+                this.$router.push('/login');
             } else {
                 this.shareVisible = true;
             }

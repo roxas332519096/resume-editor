@@ -1,5 +1,5 @@
-Vue.component('sign-up',{
-    template:`
+window.signUp = {
+    template: `
     <div class="signUp" v-cloak>
         <form class="form"  @submit.prevent="signUp">
             <h2>Sign Up</h2>
@@ -27,9 +27,9 @@ Vue.component('sign-up',{
                 <button type="submit">注册</button>
             </div>
             <div class="row">
-                <button type="button" @click="openLogin">登录</button>
+                <router-link to="/login">登录</router-link>
             </div>
-            <span class="close" @click="closeSignUp">
+            <span class="close" @click="close">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-2guanbi"></use>
                 </svg>
@@ -37,16 +37,16 @@ Vue.component('sign-up',{
         </form>
     </div>
     `,
-    data:function(){
+    data: function () {
         return {
-            signUpData:{
-                email:'',
-                password:''
+            signUpData: {
+                email: '',
+                password: ''
             }
         }
     },
-    methods:{
-        signUp:function(){
+    methods: {
+        signUp: function () {
             let user = new AV.User();
             user.setUsername(this.signUpData.email);
             user.setPassword(this.signUpData.password);
@@ -63,11 +63,10 @@ Vue.component('sign-up',{
                 }
             });
         },
-        openLogin:function(){
-            this.$emit('open')
-        },
-        closeSignUp:function(){
-            this.$emit('close')
+        close(){
+            app.$router.push('/')
         }
     }
-})
+}
+
+Vue.component('sign-up', window.signUp)
